@@ -2,7 +2,7 @@
 
 namespace App\Entities;
 
-
+use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @ORM\Entity(repositoryClass="App\Repositories\ApprenantRepository")
  * @ORM\Table(name="apprenants")
  */
-class Apprenant extends Model
+class Apprenant
 {
 
     public function __construct()
@@ -37,7 +37,7 @@ class Apprenant extends Model
     private $prenom;
 
     /**
-     * @ORM\Column(type="date", name="date_naissance", nullable=false)
+     * @ORM\Column(type="string", name="date_naissance", nullable=false)
      */
     private $date_naissance;
 
@@ -53,15 +53,20 @@ class Apprenant extends Model
     private $adresse;
 
     /**
-     * @ORM\Column(type="boolean",nullable=false)
+     * @ORM\Column(type="integer",nullable=false)
      */
-    //private $;
+    private $telephone;
 
     /**
      * @ORM\Column(type="datetime",nullable=false)
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entities\Classes", inversedBy="Apprenants", cascade={"persist"})
+     * @ORM\JoinColumn(name="classe_id", referencedColumnName="id")
+     */
+    private $classeid;
 
     /**
      * Get the value of id
@@ -70,19 +75,6 @@ class Apprenant extends Model
     {
         return $this->id;
     }
-
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
 
     /**
      * Get the value of nom
@@ -198,5 +190,66 @@ class Apprenant extends Model
     }
 
 
+    /**
+     * Get the value of telephone
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * Set the value of telephone
+     *
+     * @return  self
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set the value of createdAt
+     *
+     * @return  self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of classeid
+     */
+    public function getClasseId()
+    {
+        return $this->classeid;
+    }
+
+    /**
+     * Set the value of classeid
+     *
+     * @return  self
+     */
+    public function setClasseId($classeid)
+    {
+        $this->classeid = $classeid;
+
+        return $this;
+    } 
 
 }

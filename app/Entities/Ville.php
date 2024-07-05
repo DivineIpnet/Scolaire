@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @ORM\Entity(repositoryClass="App\Repositories\VilleRepository")
  * @ORM\Table(name="villes")
  */
-class Ville extends Model
+class Ville
 {
 
     /**
@@ -23,7 +23,7 @@ class Ville extends Model
      * @ORM\ManyToOne(targetEntity="App\Entities\Pays", inversedBy="villes", cascade={"persist"})
      * @ORM\JoinColumn(name="countries_id", referencedColumnName="id")
      */
-    private $pays;
+    //private $pays;
 
     /**
      * @ORM\Column(type="string",nullable=false)
@@ -49,37 +49,26 @@ class Ville extends Model
         return $this->id;
     }
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get the value of pays
      */
-    public function getPays()
+    /*public function getPays()
     {
         return $this->pays;
-    }
+    }*/
 
     /**
      * Set the value of pays
      *
      * @return  self
      */
-    public function setPays($pays)
+   /* public function setPays($pays)
     {
         $this->pays = $pays;
 
         return $this;
-    }
+    }*/
 
     /**
      * Get the value of name

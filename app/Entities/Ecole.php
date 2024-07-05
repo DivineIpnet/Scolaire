@@ -10,12 +10,9 @@ use Illuminate\Database\Eloquent\Model;
  * @ORM\Entity(repositoryClass="App\Repositories\EcoleRepository")
  * @ORM\Table(name="ecoles")
  */
-class Ecole extends Model
+class Ecole
 {
 
-    protected $fillable = [
-        'type', 'nom', 'email', 'telephone', 'datecreat', 'pays'
-    ];
 
     public function __construct()
     {
@@ -51,13 +48,6 @@ class Ecole extends Model
      */
     private $telephone;
 
-
-    /**
-     * @ORM\Column(type="datetime",nullable=false)
-     */
-    private $datecreat;
-
-
     /**
      * @ORM\ManyToOne(targetEntity="App\Entities\Ville", inversedBy="ecole")
      * @ORM\JoinColumn(name="ville_id", referencedColumnName="id")
@@ -83,17 +73,6 @@ class Ecole extends Model
         return $this->id;
     }
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get the value of type
@@ -200,21 +179,21 @@ class Ecole extends Model
     }
 
     /**
-     * Get the value of datecreat
+     * Get the value of createdAt
      */
-    public function getDateCreat()
+    public function getCreatedAt()
     {
-        return $this->datecreat;
+        return $this->createdAt;
     }
 
     /**
-     * Set the value of datecreat
+     * Set the value of createdAt
      *
      * @return  self
      */
-    public function setDateCreat($datecreat)
+    public function setCreatedAt($createdAt)
     {
-        $this->datecreat = $datecreat;
+        $this->createdAt = $createdAt;
 
         return $this;
     }

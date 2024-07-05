@@ -2,21 +2,19 @@
 
 namespace App\Entities;
 
-
+use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
+use Illuminate\Database\Eloquent\Model;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repositories\ClassesRepository")
- *
  * @ORM\Table(name="classes")
  */
 class Classes
- //extends User
 {
 
-    public $timestamps = false;
-
-    protected $fillable = ['nom'];
+   // public $timestamps = false;
 
     public function __construct()
     {
@@ -44,12 +42,12 @@ class Classes
     protected $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entities\Apprenant", mappedBy="classes", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entities\Apprenant", mappedBy="classeid", cascade={"persist"})
      */
     private $apprenants;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entities\Cours", mappedBy="classes", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entities\Cours", mappedBy="classeid", cascade={"persist"})
      */
     private $cours;
 
@@ -58,8 +56,113 @@ class Classes
      */
     protected $createdAt;
 
-     /**
-     * @ORM\Column(type="datetime",nullable=true)
+    /**
+     * Get the value of id
      */
-    protected $updatedAt;
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get the value of nom
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set the value of nom
+     *
+     * @return  self
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set the value of createdAt
+     *
+     * @return  self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of niveauid
+     */
+    public function getNiveauId()
+    {
+        return $this->niveauid;
+    }
+
+    /**
+     * Set the value of niveauid
+     *
+     * @return  self
+     */
+    public function setNiveauId($niveauid)
+    {
+        $this->niveauid = $niveauid;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of apprenants
+     */
+    public function getApprenants()
+    {
+        return $this->apprenants;
+    }
+
+    /**
+     * Set the value of apprenants
+     *
+     * @return  self
+     */
+    public function setApprenants($apprenants)
+    {
+        $this->apprenants = $apprenants;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cours
+     */
+    public function getCours()
+    {
+        return $this->cours;
+    }
+
+    /**
+     * Set the value of cours
+     *
+     * @return  self
+     */
+    public function setCours($cours)
+    {
+        $this->cours = $cours;
+
+        return $this;
+    }
+                
 }

@@ -10,12 +10,9 @@ use Illuminate\Database\Eloquent\Model;
  * @ORM\Entity(repositoryClass="App\Repositories\EnseignantRepository")
  * @ORM\Table(name="enseignants")
  */
-class Enseignant extends Model
+class Enseignant
 {
 
-    protected $fillable = [
-        'nom', 'prenom', 'date_naissance', 'genre', 'adresse', 'situation_matrimoniale', 'telephone', 'email'
-      ];
 
     public function __construct()
     {
@@ -38,10 +35,10 @@ class Enseignant extends Model
     /**
      * @ORM\Column(type="string",nullable=false)
      */
-    private $prenom;
+    private $prenoms;
 
     /**
-     * @ORM\Column(type="date", name="date_naissance", nullable=true)
+     * @ORM\Column(type="string", name="date_naissance", nullable=true)
      */
     private $date_naissance;
 
@@ -72,7 +69,7 @@ class Enseignant extends Model
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entities\Cours", mappedBy="enseignant", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entities\Cours", mappedBy="enseignantid", cascade={"persist"})
      */
     private $cours;
 
@@ -90,17 +87,6 @@ class Enseignant extends Model
         return $this->id;
     }
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
 
     /**
@@ -124,21 +110,21 @@ class Enseignant extends Model
     }
 
     /**
-     * Get the value of prenom
+     * Get the value of prenoms
      */
-    public function getPrenom()
+    public function getPrenoms()
     {
-        return $this->prenom;
+        return $this->prenoms;
     }
 
     /**
-     * Set the value of prenom
+     * Set the value of prenoms
      *
      * @return  self
      */
-    public function setPrenom($prenom)
+    public function setPrenoms($prenoms)
     {
-        $this->prenom = $prenom;
+        $this->prenoms = $prenoms;
 
         return $this;
     }
@@ -295,6 +281,46 @@ class Enseignant extends Model
 
         return $this;
     } */
+
+    /**
+     * Get the value of createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set the value of createdAt
+     *
+     * @return  self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cours
+     */
+    public function getCours()
+    {
+        return $this->cours;
+    }
+
+    /**
+     * Set the value of cours
+     *
+     * @return  self
+     */
+    public function setCours($cours)
+    {
+        $this->cours = $cours;
+
+        return $this;
+    }
 
 
 }
